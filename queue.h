@@ -22,7 +22,7 @@ private:
 	}
 public:
 	Queue() : _maxSize(DEFAULT_STACK_SIZE) { _queue = new TValue[_maxSize]; }
-	Queue(const size_t& maxSize) : _maxSize(maxSize), Queue() {}
+	Queue(const size_t& maxSize) : _maxSize(maxSize) { _queue = new TValue[_maxSize]; }
 	~Queue() { delete[] _queue; }
 
 	bool isFull() const { return _counter == _maxSize; }
