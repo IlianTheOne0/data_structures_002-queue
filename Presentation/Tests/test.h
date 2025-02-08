@@ -9,13 +9,13 @@ class Test
 private:
 	static const unsigned short testCounter;
 public:
-	static void Test0();
+	static void passengerTest();
 
 	static void startTest()
 	{
 		switch (testCounter)
 		{
-			case 0: { Test0(); } break;
+			case 0: { passengerTest(); } break;
 		}
 	}
 };
