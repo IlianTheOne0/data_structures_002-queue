@@ -9,6 +9,11 @@ void Test::passengerTest()
 	cout << "  getArrivalTime(). Result: " << value0->getArrivalTime() << ';' << endl;
 	cout << "  setArrivalTime(3.5);" << endl; value0->setArrivalTime(3.5);
 	cout << "  getArrivalTime(). Result: " << value0->getArrivalTime() << ';' << endl;
+	cout << endl;
 
+	cout << "Departire time:" << endl;
+	cout << "  getDepartureTime(). Result: " << value0->getDepartureTime() << ';' << endl;
+	cout << endl;
+	
 	delete value0;
 }
