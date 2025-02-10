@@ -1,13 +1,13 @@
 #ifndef PASSENGER_H
 #define PASSENGER_H
 
-#include "abstraction.h"
+#include "passengerAbstraction.h"
 
 class Passenger
 	: public APassenger
 {
 public:
-	Passenger() = delete;
+	Passenger();
 	Passenger(const double& arrivalTime);
 	~Passenger() override;
 };

@@ -3,18 +3,16 @@
 
 #include "../../../lib.h"
 #include "../../../Core/core.h"
-#include "interface.h"
+#include "passengerInterface.h"
 
-class APassenger
+class APassenger abstract
 	: public IPassenger
 {
 private:
 	double _arrivaleTime;
 	double _departureTime;
-
-	void setDepartureTime(const double& value) override;
 public:
-	APassenger() = delete;
+	APassenger();
 	APassenger(const double& arrivalTime);
 	virtual ~APassenger();
 
@@ -22,6 +20,7 @@ public:
 	void setArrivalTime(const double& value) override;
 
 	double getDepartureTime() const override;
+	void setDepartureTime(const double& value) override;
 };
 
 #endif

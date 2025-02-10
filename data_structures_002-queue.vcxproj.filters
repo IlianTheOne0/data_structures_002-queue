@@ -10,5 +10,54 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Logger\logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\Source\Local\Queue\queue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Entites\Passenger\passengerAbstraction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Entites\Passenger\passengerInterface.h" />
+    <ClCompile Include="Domain\Entites\Passenger\passenger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\passengerTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\View\Intro\intro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\queueTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Entites\BusStop\busStopAbstraction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Entites\BusStop\busStop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\busStopTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cfg.h" />
+    <ClInclude Include="Core\core.h" />
+    <ClInclude Include="Core\Logger\logger.h" />
+    <ClInclude Include="Data\data.h" />
+    <ClInclude Include="Data\Source\Local\Queue\queue.h" />
+    <ClInclude Include="Domain\domain.h" />
+    <ClInclude Include="Domain\Entites\BusStop\busStopAbstraction.h" />
+    <ClInclude Include="Domain\Entites\BusStop\busStopInterface.h" />
+    <ClInclude Include="Domain\Entites\Passenger\passengerAbstraction.h" />
+    <ClInclude Include="Domain\Entites\Passenger\passenger.h" />
+    <ClInclude Include="lib.h" />
+    <ClInclude Include="Presentation\presentation.h" />
+    <ClInclude Include="Presentation\Tests\test.h" />
+    <ClInclude Include="Presentation\View\view.h" />
+    <ClInclude Include="Data\Providers\queueProvider.h" />
+    <ClInclude Include="Domain\Entites\BusStop\busStop.h" />
   </ItemGroup>
 </Project>
