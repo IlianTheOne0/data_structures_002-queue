@@ -4,12 +4,16 @@
 #include <iostream>
 #include <Windows.h>
 #include <string>
+#include <random>
 
 using std::cout;
 using std::endl;
 using std::cin;
 using std::string;
 using std::to_string;
+using std::random_device;
+using std::mt19937;
+using std::uniform_int_distribution;
 
 #define CREATE_INFO(message) Logger::log(message, InfoADD)
 #define INFO(message) Logger::log(message, Info)

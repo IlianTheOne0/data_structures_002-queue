@@ -12,6 +12,7 @@ public:
 	static void passengerTest();
 	static void queueTest();
 	static void busStopTest();
+	static void randomGeneratorTest();
 
 	static void startTest()
 	{
@@ -20,6 +21,7 @@ public:
 			case 0: { passengerTest(); } break;
 			case 1: { queueTest(); } break;
 			case 2: { busStopTest(); } break;
+			case 3: { randomGeneratorTest(); } break;
 		}
 	}
 };

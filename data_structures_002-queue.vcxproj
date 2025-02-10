@@ -134,10 +134,12 @@
     <ClCompile Include="Domain\Entites\Passenger\passengerAbstraction.cpp" />
     <ClCompile Include="Domain\Entites\Passenger\passengerInterface.h" />
     <ClCompile Include="Domain\Entites\Passenger\passenger.cpp" />
+    <ClCompile Include="Domain\Entites\RandomGenerator\randomGenerator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\busStopTest.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\passengerTest.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\queueTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\randomGeneratorTest.cpp" />
     <ClCompile Include="Presentation\View\Intro\intro.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +155,7 @@
     <ClInclude Include="Domain\Entites\BusStop\busStopInterface.h" />
     <ClInclude Include="Domain\Entites\Passenger\passengerAbstraction.h" />
     <ClInclude Include="Domain\Entites\Passenger\passenger.h" />
+    <ClInclude Include="Domain\Entites\RandomGenerator\randomGenerator.h" />
     <ClInclude Include="lib.h" />
     <ClInclude Include="Presentation\presentation.h" />
     <ClInclude Include="Presentation\Tests\test.h" />
