@@ -21,7 +21,6 @@ void ABusStop::addBus(double currentTime, unsigned short availableSeats)
 
     while (!_passengers.isEmpty() && availableSeats > 0)
     {
-        _passengers.front().setDepartureTime(currentTime);
         setTotalWaitTime(getTotalWaitTime() + (currentTime - _passengers.front().getArrivalTime()));
         _passengers.dequeue();
         setTotalPassengers(getTotalPassengers() + 1);

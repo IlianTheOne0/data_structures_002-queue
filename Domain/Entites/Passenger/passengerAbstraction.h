@@ -10,7 +10,6 @@ class APassenger abstract
 {
 private:
 	double _arrivaleTime;
-	double _departureTime;
 public:
 	APassenger();
 	APassenger(const double& arrivalTime);
@@ -18,9 +17,6 @@ public:
 
 	double getArrivalTime() const override;
 	void setArrivalTime(const double& value) override;
-
-	double getDepartureTime() const override;
-	void setDepartureTime(const double& value) override;
 };
 
 #endif
