@@ -9,6 +9,7 @@ using std::cout;
 using std::endl;
 using std::cin;
 using std::string;
+using std::to_string;
 
 #define CREATE_INFO(message) Logger::log(message, InfoADD)
 #define INFO(message) Logger::log(message, Info)

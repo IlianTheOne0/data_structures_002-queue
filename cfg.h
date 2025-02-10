@@ -2,9 +2,9 @@
 #define CFG_H
 
 #include "Core/Logger/logger.h"
-bool Logger::_isEnabled = true;
+bool Logger::_isEnabled = false;
 
 #include "Presentation/Tests/test.h"
-const unsigned short Test::testCounter = 0;
+const unsigned short Test::testCounter = 2;
 
 #endif
