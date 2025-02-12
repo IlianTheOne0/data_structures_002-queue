@@ -8,6 +8,7 @@ void View::Intro0()
     UserInput(&eventHandler);
     
     if (eventHandler != nullptr) {
+        cout << "Simulating..." << endl;
         eventHandler->startLoop();
         delete eventHandler;
     }

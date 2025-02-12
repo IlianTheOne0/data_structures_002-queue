@@ -9,7 +9,7 @@ class APassenger abstract
 	: public IPassenger
 {
 private:
-	double _arrivaleTime;
+	double _arrivalTime;
 public:
 	APassenger();
 	APassenger(const double& arrivalTime);

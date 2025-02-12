@@ -43,8 +43,6 @@ protected:
 	void setTotalTransportedPassengers(const size_t& value) override;
 
 	BusStop* getBusStop(const unsigned short& i) const override;
-
-	void getStats() const override;
 public:
 	AEventHandler() = delete;
 	AEventHandler
@@ -78,6 +76,7 @@ public:
 	size_t getTotalTransportedPassengers() const override;
 
 	void startLoop() override;
+	void getStats() const override;
 };
 
 #endif

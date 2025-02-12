@@ -1,6 +1,14 @@
 #include "eventHandlerAbstraction.h"
 
-void AEventHandler::setBusStops(ABusStop** value) { INFO("AEventHandler -> method setBusStop: called;"); for (size_t i = 0; i < getNumOfBusStops(); i++) { _busStops[i] = value[i]; } }
+void AEventHandler::setBusStops(ABusStop** value)
+{
+	INFO("AEventHandler -> method setBusStop: called;");
+	for (size_t i = 0; i < _numOfBusStops; i++)
+	{
+		_busStops[i] = value[i];
+	}
+}
+
 void AEventHandler::setNumOfBusStops(const unsigned short& value) { INFO("AEventHandler -> method setNumOfBusStops: called;"); _numOfBusStops = value; }
 void AEventHandler::setMaxPassengersAtStops(const unsigned short& value) { INFO("AEventHandler -> method setMaxPassengersAtStops: called;"); _maxPassengersAtStops = value; }
 void AEventHandler::setDayCounter(const size_t& value) { INFO("AEventHandler -> method setDayCounter: called;"); _dayCounter = value; }
@@ -21,32 +29,6 @@ void AEventHandler::setTotalTransportedPassengers(const size_t& value) { INFO("A
 
 BusStop* AEventHandler::getBusStop(const unsigned short& i) const { INFO("AEventHandler -> method getBusStop: called;"); return static_cast<BusStop*>(_busStops[i]); }
 
-void AEventHandler::getStats() const
-{
-	INFO("AEventHandler -> method getStats: called;");
-
-	double avarageWaitTime = ((getTotalTransportedPassengers() > 0) ? getTotalWaitTime() / getTotalTransportedPassengers() : NULL);
-
-	cout << "Results:" << endl;
-	cout << "  Number of iterations: " + to_string(getDayCounter()) << endl;
-	cout << "  Total transported passengers: " + to_string(getTotalTransportedPassengers()) << endl;
-	cout << "  Avarage wait time: " + to_string(avarageWaitTime) << " time units" << endl;
-	cout << endl;
-
-	bool areStopsEffective{ true };
-	cout << "The total number of passengers served at each stop: " << endl;
-	for (unsigned short i = 0; i < getNumOfBusStops(); i++)
-	{
-		cout << "  Bus Stop Num. " << i + 1 << ": " << getBusStop(i)->getTotalPassengers() << endl;
-
-		if (getMaxPassengersAtStops() > getBusStop(i)->getMaxQueueLength()) { areStopsEffective = false; }
-	}
-	cout << endl;
-
-	if (areStopsEffective) { cout << "Bus arrival intervals are sufficient to keep waiting passengers below " << _maxPassengersAtStops << "." << endl; }
-	else { cout << "Bus arrival intervals are NOT sufficient. Consider reducing the interval between bus arrivals." << endl; }
-}
-
 AEventHandler::AEventHandler
 (
 	ABusStop** busStops,
@@ -57,11 +39,10 @@ AEventHandler::AEventHandler
 	double passengerEveningMin, double passengerEveningMax, double busEveningMin, double busEveningMax,
 	double passengeAfternoonMin, double passengerAfternoonMax, double busAfternoonMin, double busAfternoonMax
 )
-	: _busStops(nullptr)
+	: _busStops(nullptr), _numOfBusStops(numOfBusStops)
 {
 	CREATE_INFO("AEventHandler <- Constructor: called;");
 
-	setNumOfBusStops(numOfBusStops);
 	_busStops = new ABusStop * [numOfBusStops];
 	setBusStops(busStops);
 	setMaxPassengersAtStops(maxPassengersAtStops);
@@ -103,54 +84,98 @@ size_t AEventHandler::getTotalTransportedPassengers() const { INFO("AEventHandle
 
 void AEventHandler::startLoop()
 {
-	INFO("AEventHandler -> method startLoop: called;");
-	
-	double currentTime{}, passengerInterval{}, busInterval{};
+    double currentTime{}, passengerInterval{}, busInterval{};
+    for (size_t day = 0; day < getDayCounter(); day++)
+    {
+        currentTime = 5.5;
 
-	for (size_t day = 0; day < getDayCounter(); day++)
-	{
-		INFO("AEventHandler -> method startLoop -> day loop: " + to_string(getDayCounter() - day) + ";");
-		currentTime = 5.5;
+        while (currentTime <= 23.0)
+        {
+            if (currentTime >= 5.5 && currentTime < 12)
+            {
+                passengerInterval = RandomGenerator::generateNumber(getPassengerMorningMin(), getPassengerMorningMax());
+                busInterval = RandomGenerator::generateNumber(getBusMorningMin(), getBusMorningMax());
+            }
+            else if (currentTime >= 12.0 && currentTime < 20.0)
+            {
+                passengerInterval = RandomGenerator::generateNumber(getPassengerAfternoonMin(), getPassengerAfternoonMax());
+                busInterval = RandomGenerator::generateNumber(getBusAfternoonMin(), getBusAfternoonMax());
+            }
+            else if (currentTime >= 20.0 && currentTime < 23.0)
+            {
+                passengerInterval = RandomGenerator::generateNumber(getPassengerEveningMin(), getPassengerEveningMax());
+                busInterval = RandomGenerator::generateNumber(getBusEveningMin(), getBusEveningMax());
+            }
+            else
+            {
+                break;
+            }
 
-		while (currentTime <= 23.0)
-		{
-			if (currentTime >= 5.5 && currentTime < 12) { passengerInterval = RandomGenerator::generateNumber(getPassengerMorningMin(), getPassengerMorningMax()); busInterval = RandomGenerator::generateNumber(getBusMorningMin(), getBusMorningMax()); }
-			else if (currentTime >= 12.0 && currentTime < 20.0) { passengerInterval = RandomGenerator::generateNumber(getPassengerAfternoonMin(), getPassengerAfternoonMax()); busInterval = RandomGenerator::generateNumber(getBusAfternoonMin(), getBusAfternoonMax()); }
-			else if (currentTime >= 20.0 && currentTime < 23.0) { passengerInterval = RandomGenerator::generateNumber(getPassengerEveningMin(), getPassengerEveningMax()); busInterval = RandomGenerator::generateNumber(getBusEveningMin(), getBusEveningMax()); }
-			else { break; }
+            double nextPassengerTime = currentTime + RandomGenerator::generateNumber(passengerInterval * 0.8, passengerInterval * 1.2);
+            double nextBusTime = currentTime + RandomGenerator::generateNumber(busInterval * 0.8, busInterval * 1.2);
 
-			for (unsigned short i = 0; i < getNumOfBusStops(); i++)
+			while (currentTime < nextBusTime && currentTime <= 23.0)
 			{
-				ABusStop* stop = _busStops[i];
+				unsigned short randomIndex = RandomGenerator::generateNumber(long long(0), long long(getNumOfBusStops() - 1));
+				_busStops[randomIndex]->addPassenger(Passenger(currentTime));
 
-				if (!stop->getIsTerminal())
-				{
-					double nextPassengerTime = currentTime + RandomGenerator::generateNumber(passengerInterval * 0.8, passengerInterval * 1.2); double nextBusTime = currentTime + RandomGenerator::generateNumber(busInterval * 0.8, busInterval * 1.2);
-
-					while (currentTime < nextBusTime && currentTime <= 23.0)
-					{
-						INFO("AEventHandler -> method startLoop -> addPassenger: called;");
-						stop->addPassenger(Passenger(currentTime));
-						currentTime = nextPassengerTime;
-						nextPassengerTime = currentTime + RandomGenerator::generateNumber(passengerInterval * 0.8, passengerInterval * 1.2);
-					}
-				}
-				else { INFO("AEventHandler -> method startLoop -> stop.isTerminal: skipping passenger addition;"); }
-
-				if (currentTime <= 23.0)
-				{
-					unsigned short availableSeats = RandomGenerator::generateNumber(long long(getMaxPassengersAtStops() * 0.2), long long(getMaxPassengersAtStops()));
-					INFO("AEventHandler -> method startLoop -> addBus: called;");
-					stop->addBus(currentTime, availableSeats);
-					setTotalWaitTime(getTotalWaitTime() + stop->getTotalWaitTime());
-					setTotalTransportedPassengers(getTotalTransportedPassengers() + stop->getTotalPassengers());
-				}
+				currentTime = nextPassengerTime;
+				nextPassengerTime = currentTime + RandomGenerator::generateNumber(passengerInterval * 0.8, passengerInterval * 1.2);
 			}
 
-			currentTime += busInterval;
-		}
-	}
 
-	INFO("AEventHandler -> method startLoop -> getStats: called;");
-	getStats();
+            if (currentTime <= 23.0)
+            {
+                for (unsigned short i = 0; i < getNumOfBusStops(); i++)
+                {
+                    ABusStop* stop = _busStops[i];
+
+					unsigned short previousTotal = stop->getTotalPassengers();
+					double previousWaitingTime = stop->getTotalWaitTime();
+
+                    unsigned short availableSeats = RandomGenerator::generateNumber(long long(getMaxPassengersAtStops() * 0.2), long long(getMaxPassengersAtStops()));
+					stop->addBus(currentTime, availableSeats);
+
+					setTotalTransportedPassengers(getTotalTransportedPassengers() + (stop->getTotalPassengers() - previousTotal));
+					setTotalWaitTime(getTotalWaitTime() + (stop->getTotalWaitTime() - previousWaitingTime));
+                }
+            }
+
+            currentTime += busInterval;
+        }
+    }
+
+    getStats();
+}
+
+void AEventHandler::getStats() const
+{
+	INFO("AEventHandler -> method getStats: called;");
+
+	if (!Logger::getLoggerState()) { system("clear"); }
+
+	double avarageWaitTime = ((getTotalTransportedPassengers() > 0) ? getTotalWaitTime() / getTotalTransportedPassengers() : NULL);
+
+	cout << "Results:" << endl;
+	
+	bool areStopsSufficient{ true }; unsigned short totalMaxQueue{};
+	cout << "  The total number of passengers served at each stop: " << endl;
+	for (unsigned short i = 0; i < getNumOfBusStops(); i++)
+	{
+		cout << "    Bus Stop Num. " << i + 1 << ". Trasported: " << getBusStop(i)->getTotalPassengers() << endl;
+
+		if (getBusStop(i)->getMaxQueueLength() > totalMaxQueue) { totalMaxQueue = getBusStop(i)->getMaxQueueLength(); }
+		if (getBusStop(i)->getMaxQueueLength() > getMaxPassengersAtStops()) { areStopsSufficient = false; }
+	}
+	cout << endl;
+
+	cout << "    Number of iterations: " << getDayCounter() << endl;
+	cout << "    Total transported passengers: " << getTotalTransportedPassengers() << endl;
+	cout << "    Avarage wait time: " << avarageWaitTime << " time units" << endl;
+	cout << "    Total max queue: " << setw(2); ((totalMaxQueue == getMaxPassengersAtStops()) ? cout << '<' << totalMaxQueue : cout << totalMaxQueue); cout << endl;
+	cout << endl;
+
+	cout << "Conclusion:" << endl;
+	if (areStopsSufficient) { cout << "  Bus arrival intervals are sufficient to ensure that the number of waiting passengers does not exceed " << _maxPassengersAtStops << " people" << endl; }
+	else { cout << "  Bus arrival intervals are insufficient. Consider reducing the interval between bus arrivals" << endl; }
 }

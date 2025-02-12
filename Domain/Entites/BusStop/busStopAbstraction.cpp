@@ -13,9 +13,9 @@ ABusStop::~ABusStop() { CREATE_INFO("ABusStop <- Destructor: called;"); }
 
 bool ABusStop::getIsTerminal() const { INFO("ABusStop -> method getIsTerminal: called;"); return _isTerminal; }
 string ABusStop::getPassengers() const { INFO("ABusStop -> method getPassengers: called;"); return _passengers.show<string>(); }
-unsigned short ABusStop::getTotalPassengers() const { INFO("ABusStop -> method getIsTerminal: called;"); return _totalPassengers; }
+unsigned short ABusStop::getTotalPassengers() const { INFO("ABusStop -> method getTotalPassengers: called;"); return _totalPassengers; }
 double ABusStop::getTotalWaitTime() const { INFO("ABusStop -> method getIsTerminal: called;"); return _totalWaitTime; }
-unsigned short ABusStop::getCurrentQueueLength() const { INFO("ABusStop -> method getMaxQueueLength: called;"); return _currentQueueLength; }
+unsigned short ABusStop::getCurrentQueueLength() const { INFO("ABusStop -> method getCurrentQueueLength: called;"); return _passengers.getCounter(); }
 unsigned short ABusStop::getMaxQueueLength() const { INFO("ABusStop -> method getMaxQueueLength: called;"); return _maxQueueLength; }
 
 void ABusStop::addPassenger(Passenger passenger) { INFO("ABusStop -> method addPassenger: called;"); _passengers.enqueue(passenger); if (getCurrentQueueLength() > getMaxQueueLength()) { setMaxQueueLength(getCurrentQueueLength()); } }

@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include <string>
 #include <random>
+#include <iomanip>
 
 using std::cout;
 using std::endl;
@@ -12,12 +13,13 @@ using std::cin;
 
 using std::string;
 using std::to_string;
-using std::stoi;
 
 using std::random_device;
 using std::mt19937;
 using std::uniform_int_distribution;
 using std::uniform_real_distribution;
+
+using std::setw;
 
 #define CREATE_INFO(message) Logger::log(message, InfoADD)
 #define INFO(message) Logger::log(message, Info)
