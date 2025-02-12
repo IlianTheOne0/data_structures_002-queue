@@ -8,7 +8,8 @@ int main()
 	INFO("The program is started");
 
 	(Logger::getLoggerState()) ? Test::startTest() : View::Intro0();
-	//Test::startTest();
+	////Test::startTest();
+	//View::StartTheProgram();
 
 	INFO("The program is closed");
 

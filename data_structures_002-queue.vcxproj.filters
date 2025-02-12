@@ -41,6 +41,24 @@
     <ClCompile Include="Presentation\Tests\Tests\busStopTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Domain\Entites\EventHandler\eventHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Entites\EventHandler\eventHandlerAbstraction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Entites\RandomGenerator\randomGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\randomGeneratorTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\eventHandlerTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\View\Intro\userInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cfg.h" />
@@ -59,5 +77,9 @@
     <ClInclude Include="Presentation\View\view.h" />
     <ClInclude Include="Data\Providers\queueProvider.h" />
     <ClInclude Include="Domain\Entites\BusStop\busStop.h" />
+    <ClInclude Include="Domain\Entites\EventHandler\eventHandlerAbstraction.h" />
+    <ClInclude Include="Domain\Entites\EventHandler\eventHandlerInterface.h" />
+    <ClInclude Include="Domain\Entites\EventHandler\eventHandler.h" />
+    <ClInclude Include="Domain\Entites\RandomGenerator\randomGenerator.h" />
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
 
 #include "../../Core/core.h"
 #include "../../lib.h"
+#include "../View/view.h"
 
 class Test
 {
@@ -13,6 +14,7 @@ public:
 	static void queueTest();
 	static void busStopTest();
 	static void randomGeneratorTest();
+	static void eventHandlerTest();
 
 	static void startTest()
 	{
@@ -22,6 +24,8 @@ public:
 			case 1: { queueTest(); } break;
 			case 2: { busStopTest(); } break;
 			case 3: { randomGeneratorTest(); } break;
+			case 4: { eventHandlerTest(); } break;
+			default: { View::Intro0(); }
 		}
 	}
 };

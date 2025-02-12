@@ -5,7 +5,7 @@ void Test::busStopTest()
 {
 	double currentTime{};
 	double maxQueueLength{ 10 };
-	BusStop* value0 = new BusStop(false);
+	BusStop* value0 = new BusStop(false, maxQueueLength);
 
 	cout << "addPasenger:" << endl;
 	cout << "  CurrentTime: +5;" << endl; currentTime += 5.0; value0->addPassenger(Passenger(currentTime));
@@ -32,7 +32,7 @@ void Test::busStopTest()
 	delete value0;
 
 
-	BusStop value1{ BusStop(true) };
+	BusStop value1{ BusStop(true, maxQueueLength) };
 
 	cout << "addPasenger:" << endl;
 	cout << "  CurrentTime: +5;" << endl; currentTime += 5.0; value1.addPassenger(Passenger(currentTime));

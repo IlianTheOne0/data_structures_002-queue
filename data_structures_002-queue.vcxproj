@@ -131,16 +131,20 @@
     <ClCompile Include="Data\Source\Local\Queue\queue.cpp" />
     <ClCompile Include="Domain\Entites\BusStop\busStopAbstraction.cpp" />
     <ClCompile Include="Domain\Entites\BusStop\busStop.cpp" />
+    <ClCompile Include="Domain\Entites\EventHandler\eventHandler.cpp" />
+    <ClCompile Include="Domain\Entites\EventHandler\eventHandlerAbstraction.cpp" />
     <ClCompile Include="Domain\Entites\Passenger\passengerAbstraction.cpp" />
     <ClCompile Include="Domain\Entites\Passenger\passengerInterface.h" />
     <ClCompile Include="Domain\Entites\Passenger\passenger.cpp" />
     <ClCompile Include="Domain\Entites\RandomGenerator\randomGenerator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\busStopTest.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\eventHandlerTest.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\passengerTest.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\queueTest.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\randomGeneratorTest.cpp" />
     <ClCompile Include="Presentation\View\Intro\intro.cpp" />
+    <ClCompile Include="Presentation\View\Intro\userInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cfg.h" />
@@ -153,6 +157,9 @@
     <ClInclude Include="Domain\Entites\BusStop\busStopAbstraction.h" />
     <ClInclude Include="Domain\Entites\BusStop\busStop.h" />
     <ClInclude Include="Domain\Entites\BusStop\busStopInterface.h" />
+    <ClInclude Include="Domain\Entites\EventHandler\eventHandlerAbstraction.h" />
+    <ClInclude Include="Domain\Entites\EventHandler\eventHandlerInterface.h" />
+    <ClInclude Include="Domain\Entites\EventHandler\eventHandler.h" />
     <ClInclude Include="Domain\Entites\Passenger\passengerAbstraction.h" />
     <ClInclude Include="Domain\Entites\Passenger\passenger.h" />
     <ClInclude Include="Domain\Entites\RandomGenerator\randomGenerator.h" />
