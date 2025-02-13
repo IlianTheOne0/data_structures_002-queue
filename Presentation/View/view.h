@@ -2,11 +2,14 @@
 #define VIEW_H
 
 #include "../../lib.h"
+#include "../../Core/core.h"
+#include "../../Domain/domain.h"
 
 class View
 {
 public:
     static void Intro0();
+    static void UserInput(AEventHandler** eventHandler);
 };
 
 #endif

@@ -8,7 +8,7 @@ class BusStop
 {
 public:
 	BusStop() = delete;
-	BusStop(bool isTreminal);
+	BusStop(bool isTreminal, unsigned short maxQueueLength);
 	~BusStop() override;
 };
 
