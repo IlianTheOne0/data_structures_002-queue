@@ -152,7 +152,7 @@ void AEventHandler::getStats() const
 {
 	INFO("AEventHandler -> method getStats: called;");
 
-	if (!Logger::getLoggerState()) { system("clear"); }
+	if (!Logger::getLoggerState()) { system("cls"); }
 
 	double avarageWaitTime = ((getTotalTransportedPassengers() > 0) ? getTotalWaitTime() / getTotalTransportedPassengers() : NULL);
 
