@@ -129,7 +129,11 @@
   <ItemGroup>
     <ClCompile Include="Core\Logger\logger.cpp" />
     <ClCompile Include="Data\Source\Local\Queue\queue.cpp" />
+    <ClCompile Include="Domain\Entities\Job\job.cpp" />
+    <ClCompile Include="Domain\Entities\Job\jobAbstraction.cpp" />
+    <ClCompile Include="Domain\Entities\Job\jobInterface.h" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Presentation\Tests\Tests\jobTest.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\queueTest.cpp" />
     <ClCompile Include="Presentation\View\Intro\intro.cpp" />
   </ItemGroup>
@@ -141,6 +145,8 @@
     <ClInclude Include="Data\Providers\queueProvider.h" />
     <ClInclude Include="Data\Source\Local\Queue\queue.h" />
     <ClInclude Include="Domain\domain.h" />
+    <ClInclude Include="Domain\Entities\Job\job.h" />
+    <ClInclude Include="Domain\Entities\Job\jobAbstraction.h" />
     <ClInclude Include="lib.h" />
     <ClInclude Include="Presentation\presentation.h" />
     <ClInclude Include="Presentation\Tests\test.h" />

@@ -5,6 +5,6 @@
 bool Logger::_isEnabled = true;
 
 #include "Presentation/Tests/test.h"
-const unsigned short Test::testCounter = 0;
+const unsigned short Test::testCounter = 1;
 
 #endif
