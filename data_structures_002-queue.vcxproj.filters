@@ -10,5 +10,30 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Logger\logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\Source\Local\Queue\queue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\View\Intro\intro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Presentation\Tests\Tests\queueTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cfg.h" />
+    <ClInclude Include="Core\core.h" />
+    <ClInclude Include="Core\Logger\logger.h" />
+    <ClInclude Include="Data\data.h" />
+    <ClInclude Include="Data\Providers\queueProvider.h" />
+    <ClInclude Include="Data\Source\Local\Queue\queue.h" />
+    <ClInclude Include="Domain\domain.h" />
+    <ClInclude Include="lib.h" />
+    <ClInclude Include="Presentation\presentation.h" />
+    <ClInclude Include="Presentation\Tests\test.h" />
+    <ClInclude Include="Presentation\View\view.h" />
   </ItemGroup>
 </Project>
