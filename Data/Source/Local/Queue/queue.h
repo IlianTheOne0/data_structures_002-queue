@@ -5,14 +5,8 @@
 
 #include "../../../../lib.h"
 #include "../../../../Core/core.h"
-
-enum Priority {
-	Highest = 5,
-	High = 4,
-	Normal = 3,
-	Low = 2,
-	Lowest = 1
-};
+#include "../../../../Domain/domain.h"
+#include "../enum.h"
 
 template<typename TValue>
 class Item

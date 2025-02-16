@@ -95,7 +95,7 @@ template<typename TValue> void Queue<TValue>::clear() { INFO("Queue -> method cl
 template<typename TValue> Item<TValue> Queue<TValue>::front() { INFO("Queue -> method front: called;"); if (isEmpty()) { return Item<TValue>(); } return _queue[0]; }
 template<typename TValue> Item<TValue> Queue<TValue>::back() { INFO("Queue -> method back: called;"); if (isEmpty()) { return Item<TValue>(); } return _queue[_counter - 1]; }
 template<typename TValue> Item<TValue> Queue<TValue>::peek() {
-	INFO("Queue -> method dequeue: peek;");
+	INFO("Queue -> method peek: called;");
 
 	if (isEmpty()) { return Item<TValue>(); }
 
@@ -107,3 +107,8 @@ template<typename TValue> Item<TValue> Queue<TValue>::peek() {
 
 template class Item<int>;
 template class Queue<int>;
+
+template class Item<Job>;
+template class Queue<Job>;
+template class Item<Stat>;
+template class Queue<Stat>;

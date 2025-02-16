@@ -4,6 +4,8 @@
 #include <iostream>
 #include <Windows.h>
 #include <string>
+#include <ctime>
+#include <iomanip>
 
 using std::cout;
 using std::endl;
@@ -11,6 +13,12 @@ using std::cin;
 
 using std::string;
 using std::to_string;
+
+using std::time_t;
+using std::time;
+using std::ctime;
+
+using std::setw;
 
 #define CREATE_INFO(message) Logger::log(message, InfoADD)
 #define INFO(message) Logger::log(message, Info)

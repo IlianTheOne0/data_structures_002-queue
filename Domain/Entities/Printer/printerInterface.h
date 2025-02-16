@@ -1,0 +1,23 @@
+#ifndef PRINTER_INTERFACE_H
+#define PRINTER_INTERFACE_H
+
+class IStat
+{
+public:
+	virtual string getUserName() const = 0;
+	virtual string getTime() const = 0;
+};
+
+template<typename TReturn0, typename TReturn1>
+class IPrinter
+{
+protected:
+	virtual QueueProvider<TReturn0>& getJobQueue() = 0;
+	virtual QueueProvider<TReturn1>& getStatQueue() = 0;
+	virtual TReturn1 createStatQueue(const string& userName, const string& time) = 0;
+
+	virtual size_t getCounter() const = 0;
+	virtual void setCounter(const size_t& value) = 0;
+};
+
+#endif

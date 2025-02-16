@@ -1,6 +1,7 @@
 #ifndef DATA_H
 #define DATA_H
 
-#include "Source/Local/Queue/queue.h"
+#include "Providers/queueProvider.h"
+#include "Source/Local/enum.h"
 
 #endif
