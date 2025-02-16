@@ -2,44 +2,29 @@
 #define QUEUE_PROVIDER_H
 
 #include "../Source/Local/Queue/queue.h"
+//#include "../Source/Local/enum.h"
 
 template<typename TValue>
 class QueueProvider
 {
 private:
     Queue<TValue> _queue;
-
 public:
-    QueueProvider();
-    QueueProvider(const size_t& maxSize);
-    ~QueueProvider();
+    QueueProvider() : _queue() {}
+    QueueProvider(const size_t& maxSize) : _queue(maxSize) {}
+    ~QueueProvider() {}
 
-    void addItem(TValue value);
-    void addItem(TValue value, Priority priority);
-    Item<TValue> removeItem();
-    Item<TValue> removeHighestPriorityItem();
-    bool isQueueFull() const;
-    bool isQueueEmpty() const;
-    size_t getQueueSize() const;
-    void clearQueue();
-    Item<TValue> getFrontItem();
-    Item<TValue> getBackItem();
-    Item<TValue> peekHighestPriorityItem();
+    void enqueue(TValue value) { _queue.enqueue(value); }
+    void enqueue(TValue value, Priority priority) { _queue.enqueue(value, priority); }
+    Item<TValue> dequeue() { return _queue.dequeue(); }
+    Item<TValue> dequeueWithHighestPriority() { return _queue.dequeueWithHighestPriority(); }
+    bool isFull() const { return _queue.isFull(); }
+    bool isEmpty() const { return _queue.isEmpty(); }
+    size_t getCounter() const { return _queue.getCounter(); }
+    void clear() { _queue.clear(); }
+    Item<TValue> front() { return _queue.front(); }
+    Item<TValue> back() { return _queue.back(); }
+    Item<TValue> peek() { return _queue.peek(); }
 };
-
-template<typename TValue> QueueProvider<TValue>::QueueProvider() : _queue() { }
-template<typename TValue> QueueProvider<TValue>::QueueProvider(const size_t& maxSize) : _queue(maxSize) { }
-template<typename TValue> QueueProvider<TValue>::~QueueProvider() {}
-template<typename TValue> void QueueProvider<TValue>::addItem(TValue value) { _queue.enqueue(value); }
-template<typename TValue> void QueueProvider<TValue>::addItem(TValue value, Priority priority) { _queue.enqueue(value, priority); }
-template<typename TValue> Item<TValue> QueueProvider<TValue>::removeItem() { return _queue.dequeue(); }
-template<typename TValue> Item<TValue> QueueProvider<TValue>::removeHighestPriorityItem() { return _queue.dequeueWithHighestPriority(); }
-template<typename TValue> bool QueueProvider<TValue>::isQueueFull() const { return _queue.isFull(); }
-template<typename TValue> bool QueueProvider<TValue>::isQueueEmpty() const { return _queue.isEmpty(); }
-template<typename TValue> size_t QueueProvider<TValue>::getQueueSize() const { return _queue.getCounter(); }
-template<typename TValue> void QueueProvider<TValue>::clearQueue() { _queue.clear(); }
-template<typename TValue> Item<TValue> QueueProvider<TValue>::getFrontItem() { return _queue.front(); }
-template<typename TValue> Item<TValue> QueueProvider<TValue>::getBackItem() { return _queue.back(); }
-template<typename TValue> Item<TValue> QueueProvider<TValue>::peekHighestPriorityItem() { return _queue.peek(); }
 
 #endif

@@ -34,6 +34,15 @@
     <ClCompile Include="Presentation\Tests\Tests\jobTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Domain\Entities\Printer\printer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Entities\Printer\printerAbstraction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\UseCases\PrinterUseCases\printerUseCase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cfg.h" />
@@ -49,5 +58,10 @@
     <ClInclude Include="Presentation\View\view.h" />
     <ClInclude Include="Domain\Entities\Job\job.h" />
     <ClInclude Include="Domain\Entities\Job\jobAbstraction.h" />
+    <ClInclude Include="Domain\Entities\Printer\printer.h" />
+    <ClInclude Include="Domain\Entities\Printer\printerAbstraction.h" />
+    <ClInclude Include="Domain\Entities\Printer\printerInterface.h" />
+    <ClInclude Include="Domain\UseCases\PrinterUseCases\printerUseCase.h" />
+    <ClInclude Include="Data\Source\Local\enum.h" />
   </ItemGroup>
 </Project>

@@ -105,8 +105,8 @@ template<typename TValue> Item<TValue> Queue<TValue>::peek() {
 	return _queue[id];
 }
 
-template class Item<int>;
-template class Queue<int>;
+//template class Item<int>;
+//template class Queue<int>;
 
 template class Item<Job>;
 template class Queue<Job>;

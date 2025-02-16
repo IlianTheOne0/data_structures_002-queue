@@ -7,7 +7,7 @@
 #include "../Job/job.h"
 #include "printerInterface.h"
 
-class AStat
+class AStat abstract
     : public IStat
 {
 private:
@@ -23,7 +23,7 @@ public:
 };
 
 template<typename TValue0, typename TValue1>
-class APrinter
+class APrinter abstract
     : public IPrinter<TValue0, TValue1>
 {
 private:

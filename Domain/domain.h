@@ -2,6 +2,6 @@
 #define DOMAIN_H
 
 #include "Entities/Job/job.h"
-#include "UseCases/Printer/printerUseCase.h"
+#include "UseCases/PrinterUseCases/printerUseCase.h"
 
 #endif
