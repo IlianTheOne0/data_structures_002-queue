@@ -11,9 +11,10 @@ class AJob
 private:
 	size_t _id;
 	string _userName;
+	string _time;
 public:
 	AJob();
-	AJob(const size_t& id, const string& userName);
+	AJob(const size_t& id, const string& userName, const string& time);
 	virtual ~AJob();
 
 	size_t getId() const override;
@@ -21,6 +22,8 @@ public:
 
 	void setId(const size_t& value) override;
 	void setUserName(const string& value) override;
+
+	string getTime() const;
 };
 
 #endif

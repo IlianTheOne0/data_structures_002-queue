@@ -1,114 +1,82 @@
 #include "queue.h"
+#include "../../../../lib.h"
+#include "../../../../Core/core.h"
 
-template<typename TValue>
-Item<TValue>::Item()
-	: _priority(Priority::Normal)
-{ CREATE_INFO("Item <- Default constructor: called;"); }
-template<typename TValue>
-Item<TValue>::Item(TValue value)
-	: _value(value), _priority(Priority::Normal)
-{ CREATE_INFO("Item <- Constructor with custom value: called;"); }
-template<typename TValue>
-Item<TValue>::Item(TValue value, Priority priority)
-	: _value(value), _priority(static_cast<Priority>(priority))
-{ CREATE_INFO("Item <- Constructor with custom value and priority of it: called;"); }
-template<typename TValue> Item<TValue>::~Item() { CREATE_INFO("Item <- Destructor: called;"); }
-
-template<typename TValue> TValue Item<TValue>::getValue() const { INFO("Item -> method getValue: called;"); return _value; }
-template<typename TValue> void Item<TValue>::setValue(const TValue& value) { INFO("Item -> method setValue: called;"); _value = value; }
-
-template<typename TValue> Priority Item<TValue>::getPriority() const { INFO("Item -> method getPriority: called;"); return _priority; }
-template<typename TValue> void Item<TValue>::setPriority(const Priority& value) { INFO("Item -> method setPriority: called;"); _priority = value; }
-
-template<typename TValue>
-void Queue<TValue>::_resize()
+void Queue::_resize()
 {
 	INFO("Item -> method resize: called;");
 
 	_maxSize += DEFAULT_STACK_SIZE;
 
-	Item<TValue>* newQueue = new Item<TValue>[_maxSize];
+	IItem** newQueue = new IItem*[_maxSize];
 	for (size_t i = 0; i < _counter; i++) { newQueue[i] = _queue[i]; }
 	delete[] _queue;
 	_queue = newQueue;
 }
-template<typename TValue>
-void Queue<TValue>::_sort()
+
+void Queue::_sort()
 {
 	INFO("Item -> method sort: called;");
 
 	for (size_t i = 1; i < _counter; i++)
 	{
-		Item<TValue> key = _queue[i];
+		IItem* key = _queue[i];
 		size_t j = i;
 
-		while (j > 0 && _queue[j - 1].getPriority() < key.getPriority()) { _queue[j] = _queue[j - 1]; j--; }
+		while (j > 0 && _queue[j - 1]->getPriority() > key->getPriority()) { _queue[j] = _queue[j - 1]; j--; }
 		_queue[j] = key;
 	}
 }
 
-template<typename TValue>
-Queue<TValue>::Queue()
-	: _maxSize(DEFAULT_STACK_SIZE)
-{ INFO("Queue <- Default constructor: called;"); _queue = new Item<TValue>[_maxSize]; }
-template<typename TValue>
-Queue<TValue>::Queue(const size_t& maxSize)
-	: _maxSize(maxSize)
-{ INFO("Queue <- Constructor with custom size: called;"); _queue = new Item<TValue>[_maxSize]; }
-template<typename TValue> Queue<TValue>::~Queue() { INFO("Queue <- Destructor: called;"); delete[] _queue; }
+Queue::Queue()
+	: _maxSize(DEFAULT_STACK_SIZE), _counter(0)
+{ INFO("Queue <- Default constructor: called;"); _queue = new IItem*[_maxSize]; }
+ Queue::~Queue() { INFO("Queue <- Destructor: called;"); delete[] _queue; }
 
-template<typename TValue> bool Queue<TValue>::isFull() const { INFO("Queue -> method isFull: called;"); return _counter == _maxSize; }
-template<typename TValue> bool Queue<TValue>::isEmpty() const { INFO("Queue -> method isEmpty: called;"); return _counter == 0; }
-template<typename TValue> size_t Queue<TValue>::getMaxSize() const { INFO("Queue -> method getMaxSize: called;"); return _maxSize; }
-template<typename TValue> size_t Queue<TValue>::getCounter() const { INFO("Queue -> method getCounter: called;"); return _counter; }
+ bool Queue::isFull() const { INFO("Queue -> method isFull: called;"); return _counter == _maxSize; }
+ bool Queue::isEmpty() const { INFO("Queue -> method isEmpty: called;"); return _counter == 0; }
+ size_t Queue::getMaxSize() const { INFO("Queue -> method getMaxSize: called;"); return _maxSize; }
+ size_t Queue::getCounter() const { INFO("Queue -> method getCounter: called;"); return _counter; }
 
-template<typename TValue> void Queue<TValue>::enqueue(TValue value) { if (isFull()) { _resize(); } _queue[_counter++] = Item<TValue>(value); _sort(); }
-template<typename TValue> void Queue<TValue>::enqueue(TValue value, Priority priority) { if (isFull()) { _resize(); } _queue[_counter++] = Item<TValue>(value, priority); _sort(); }
+void Queue::enqueue(IItem* value) { if (isFull()) { _resize(); } _queue[_counter++] = value; _sort(); }
 
-template<typename TValue> Item<TValue> Queue<TValue>::dequeue()
+IItem* Queue::dequeue()
 {
 	INFO("Queue -> method dequeue: called;");
 
-	if (isEmpty()) { return Item<TValue>(); }
+	if (isEmpty()) { return nullptr; }
 
-	Item<TValue> item = _queue[0];
+	IItem* item = _queue[0];
 	for (size_t i = 0; i < _counter - 1; i++) { _queue[i] = _queue[i + 1]; }
 	_counter--;
 	return item;
 }
-template<typename TValue> Item<TValue> Queue<TValue>::dequeueWithHighestPriority()
+ IItem* Queue::dequeueWithHighestPriority()
 {
 	INFO("Queue -> method dequeueWithHighestPriority: called;");
 
-	if (isEmpty()) { return Item<TValue>(); }
+	if (isEmpty()) { return nullptr; }
 
 	size_t id{};
-	for (size_t i = 1; i < _counter; i++) { if (_queue[i].getPriority() > _queue[id].getPriority()) { id = i; } }
+	for (size_t i = 1; i < _counter; i++) { if (_queue[i]->getPriority() > _queue[id]->getPriority()) { id = i; } }
 
-	Item<TValue> item = _queue[id];
+	IItem* item = _queue[id];
 	for (size_t i = id; i < _counter - 1; i++) { _queue[i] = _queue[i + 1]; }
 	_counter--;
 	return item;
 }
-template<typename TValue> void Queue<TValue>::clear() { INFO("Queue -> method clear: called;"); _counter = 0; }
+ void Queue::clear() { INFO("Queue -> method clear: called;"); for (size_t i = 0; i < _counter; i++) { delete _queue[i]; } _counter = 0; }
 
-template<typename TValue> Item<TValue> Queue<TValue>::front() { INFO("Queue -> method front: called;"); if (isEmpty()) { return Item<TValue>(); } return _queue[0]; }
-template<typename TValue> Item<TValue> Queue<TValue>::back() { INFO("Queue -> method back: called;"); if (isEmpty()) { return Item<TValue>(); } return _queue[_counter - 1]; }
-template<typename TValue> Item<TValue> Queue<TValue>::peek() {
+ IItem* Queue::front() { INFO("Queue -> method front: called;"); if (isEmpty()) { return nullptr; } return _queue[0]; }
+ IItem* Queue::back() { INFO("Queue -> method back: called;"); if (isEmpty()) { return nullptr; } return _queue[_counter - 1]; }
+ IItem* Queue::peek()
+ {
 	INFO("Queue -> method peek: called;");
 
-	if (isEmpty()) { return Item<TValue>(); }
+	if (isEmpty()) { return nullptr; }
 
 	size_t id{};
-	for (size_t i = 1; i < _counter; i++) { if (_queue[i].getPriority() > _queue[id].getPriority()) { id = i; } }
+	for (size_t i = 1; i < _counter; i++) { if (_queue[i]->getPriority() > _queue[id]->getPriority()) { id = i; } }
 
 	return _queue[id];
 }
-
-//template class Item<int>;
-//template class Queue<int>;
-
-template class Item<Job>;
-template class Queue<Job>;
-template class Item<Stat>;
-template class Queue<Stat>;

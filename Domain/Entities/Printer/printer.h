@@ -3,15 +3,6 @@
 
 #include "printerAbstraction.h"
 
-class Stat
-	: public AStat
-{
-public:
-	Stat() = delete;
-	Stat(const string& userName, const string time);
-	~Stat() override;
-};
-
 class Printer
 	: public APrinter<Job, Stat>
 {

@@ -6,21 +6,7 @@
 #include "../../../Data/data.h"
 #include "../Job/job.h"
 #include "printerInterface.h"
-
-class AStat abstract
-    : public IStat
-{
-private:
-    string _userName;
-    string _time;
-public:
-    AStat() = delete;
-    AStat(const string& userName, const string& time);
-    virtual ~AStat();
-
-    string getUserName() const override;
-    string getTime() const override;
-};
+#include "../Stat/stat.h"
 
 template<typename TValue0, typename TValue1>
 class APrinter abstract
@@ -33,7 +19,7 @@ private:
 protected:
     QueueProvider<TValue0>& getJobQueue() override;
     QueueProvider<TValue1>& getStatQueue() override;
-    TValue1 createStatQueue(const string& userName, const string& time) override;
+    TValue1 createStatQueue(const size_t& id, const string& userName, const string& time, const string& exectuedTime) override;
 
     size_t getCounter() const override;
     void setCounter(const size_t& value) override;

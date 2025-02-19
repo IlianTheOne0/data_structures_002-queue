@@ -43,6 +43,18 @@
     <ClCompile Include="Domain\UseCases\PrinterUseCases\printerUseCase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Data\Source\Local\Item\itemInterface.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\Source\Local\Item\item.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Entities\Stat\stat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Entities\Stat\statAbstraction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cfg.h" />
@@ -62,6 +74,10 @@
     <ClInclude Include="Domain\Entities\Printer\printerAbstraction.h" />
     <ClInclude Include="Domain\Entities\Printer\printerInterface.h" />
     <ClInclude Include="Domain\UseCases\PrinterUseCases\printerUseCase.h" />
-    <ClInclude Include="Data\Source\Local\enum.h" />
+    <ClInclude Include="Data\Source\Local\priorityEnum.h" />
+    <ClInclude Include="Data\Source\Local\Item\item.h" />
+    <ClInclude Include="Domain\Entities\Stat\stat.h" />
+    <ClInclude Include="Domain\Entities\Stat\statInterface.h" />
+    <ClInclude Include="Domain\Entities\Stat\statAbstraction.h" />
   </ItemGroup>
 </Project>

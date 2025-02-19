@@ -2,6 +2,6 @@
 #define DATA_H
 
 #include "Providers/queueProvider.h"
-#include "Source/Local/enum.h"
+#include "Source/Local/priorityEnum.h"
 
 #endif

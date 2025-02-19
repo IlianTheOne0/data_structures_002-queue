@@ -70,6 +70,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -108,6 +111,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -128,12 +133,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core\Logger\logger.cpp" />
+    <ClCompile Include="Data\Source\Local\Item\item.cpp" />
+    <ClCompile Include="Data\Source\Local\Item\itemInterface.h" />
     <ClCompile Include="Data\Source\Local\Queue\queue.cpp" />
     <ClCompile Include="Domain\Entities\Job\job.cpp" />
     <ClCompile Include="Domain\Entities\Job\jobAbstraction.cpp" />
     <ClCompile Include="Domain\Entities\Job\jobInterface.h" />
     <ClCompile Include="Domain\Entities\Printer\printer.cpp" />
     <ClCompile Include="Domain\Entities\Printer\printerAbstraction.cpp" />
+    <ClCompile Include="Domain\Entities\Stat\stat.cpp" />
+    <ClCompile Include="Domain\Entities\Stat\statAbstraction.cpp" />
     <ClCompile Include="Domain\UseCases\PrinterUseCases\printerUseCase.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Presentation\Tests\Tests\jobTest.cpp" />
@@ -146,7 +155,8 @@
     <ClInclude Include="Core\Logger\logger.h" />
     <ClInclude Include="Data\data.h" />
     <ClInclude Include="Data\Providers\queueProvider.h" />
-    <ClInclude Include="Data\Source\Local\enum.h" />
+    <ClInclude Include="Data\Source\Local\Item\item.h" />
+    <ClInclude Include="Data\Source\Local\priorityEnum.h" />
     <ClInclude Include="Data\Source\Local\Queue\queue.h" />
     <ClInclude Include="Domain\domain.h" />
     <ClInclude Include="Domain\Entities\Job\job.h" />
@@ -154,6 +164,9 @@
     <ClInclude Include="Domain\Entities\Printer\printer.h" />
     <ClInclude Include="Domain\Entities\Printer\printerAbstraction.h" />
     <ClInclude Include="Domain\Entities\Printer\printerInterface.h" />
+    <ClInclude Include="Domain\Entities\Stat\stat.h" />
+    <ClInclude Include="Domain\Entities\Stat\statAbstraction.h" />
+    <ClInclude Include="Domain\Entities\Stat\statInterface.h" />
     <ClInclude Include="Domain\UseCases\PrinterUseCases\printerUseCase.h" />
     <ClInclude Include="lib.h" />
     <ClInclude Include="Presentation\presentation.h" />

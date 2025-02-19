@@ -6,7 +6,7 @@ void testAddItem() {
 
     queueProvider.enqueue(1);
 
-    if (queueProvider.getCounter() == 1 && queueProvider.front().getValue() == 1) { cout << "testAddItem passed" << endl; }
+    if (queueProvider.getCounter() == 1 && queueProvider.front()->getValue() == 1) { cout << "testAddItem passed" << endl; }
     else { cout << "testAddItem failed" << endl; }
 }
 
@@ -16,7 +16,7 @@ void testRemoveItem() {
     queueProvider.enqueue(1);
 
     auto item = queueProvider.dequeue();
-    if (item.getValue() == 1 && queueProvider.isEmpty()) { cout << "testRemoveItem passed" << endl; }
+    if (item->getValue() == 1 && queueProvider.isEmpty()) { cout << "testRemoveItem passed" << endl; }
     else { cout << "testRemoveItem failed" << endl; }
 }
 

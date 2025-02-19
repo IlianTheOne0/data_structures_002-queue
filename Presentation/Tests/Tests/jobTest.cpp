@@ -11,7 +11,7 @@ void testJobDefaultConstructor() {
 void testJobParameterizedConstructor() {
     size_t id = 1;
     string userName = "testUser";
-    Job job(id, userName);
+    Job job(id, userName, EMPTY_DEFAULT_STRING);
 
     if (job.getId() == id && job.getUserName() == userName) { cout << "testJobParameterizedConstructor passed" << endl; }
     else { cout << "testJobParameterizedConstructor failed" << endl; }

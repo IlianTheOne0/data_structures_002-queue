@@ -1,8 +1,6 @@
 #ifndef TEST_H
 #define TEST_H
 
-#include "../../Core/core.h"
-#include "../../lib.h"
 #include "../View/view.h"
 
 class Test
