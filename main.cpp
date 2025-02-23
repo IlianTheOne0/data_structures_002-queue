@@ -1,70 +1,85 @@
-#include <iostream>
-#include <conio.h>
-#include <string>
+#include "lib.h"
+#include "Entities/Queue/queue.h"
 
-using std::cout;
-using std::endl;
-using std::cin;
-using std::string;
-using std::to_string;
+ostream& operator<<(ostream& os, IItem& item) {
+    char* value = static_cast<char*>(item.getValue());
+    
+    if (value) { os << *value; }
+    else { os << "null"; }
+    
+    return os;
+}
 
-#include "queue.h"
+template<typename TValue>
+void testEnqueue(Queue& queue, TValue value) {
+    cout << "  enqueue '" << value << "'. Result: ";
+    queue.enqueue(new Item<TValue>(value));
+    cout << *static_cast<Item<TValue>*>(queue.back()) << endl;
+}
 
-int main()
-{
-	Queue<char> queue;
-	cout << "Adding a character to the queue:" << endl;
-	cout << "  enqueue 'a'. Result: "; queue.enqueue('a'); cout << queue.back() << endl;
-	cout << "  enqueue 'b'. Result: "; queue.enqueue('b'); cout << queue.back() << endl;
-	cout << "  enqueue 'c'. Result: "; queue.enqueue('c'); cout << queue.back() << endl;
-	cout << "  enqueue 'd'. Result: "; queue.enqueue('d'); cout << queue.back() << endl;
-	cout << endl;
+void testDequeue(Queue& queue) {
+    cout << "  dequeue + back. Result: ";
+    queue.dequeue();
 
-	cout << "Checks: " << endl;
-	cout << "  Max size. Result: " << queue.getMaxSize() << endl;
-	cout << "  Counting the number of characters in the queue. Result: " << queue.getCounter() << endl;
-	cout << "  isEmpty. Result: "; (queue.isEmpty()) ? cout << "true" : cout << "false"; cout << endl;
-	cout << "  isFull. Result: "; (queue.isFull()) ? cout << "true" : cout << "false"; cout << endl;
-	cout << endl;
+    IItem* backItem = queue.back();
+    if (backItem) { cout << *static_cast<Item<char>*>(backItem) << endl; }
+    else { cout << "Queue is empty!" << endl; }
+}
 
-	cout << "Deleting a character from the queue + getting without deleting the back character in the queue:" << endl;
-	cout << "  dequeue + back. Result: "; queue.dequeue(); cout << queue.back() << endl;
-	cout << "  dequeue + back. Result: "; queue.dequeue(); cout << queue.back() << endl;
-	cout << "  dequeue + back. Result: "; queue.dequeue(); cout << queue.back() << endl;
-	cout << endl;
+void testQueueState(Queue& queue) {
+    cout << "Checks: " << endl;
+    cout << "  Max size. Result: " << queue.getMaxSize() << endl;
+    cout << "  Counting the number of characters in the queue. Result: " << queue.getCounter() << endl;
+    cout << "  isEmpty. Result: " << (queue.isEmpty() ? "true" : "false") << endl;
+    cout << "  isFull. Result: " << (queue.isFull() ? "true" : "false") << endl;
+    cout << endl;
+}
 
+void testClearQueue(Queue& queue) {
+    cout << "Clear the queue. Result (isEmpty): ";
+    queue.clear();
+    cout << (queue.isEmpty() ? "true" : "false") << endl;
+}
 
-	cout << "Checks: " << endl;
-	cout << "  isEmpty. Result: "; (queue.isEmpty()) ? cout << "true" : cout << "false"; cout << endl;
-	cout << "  isFull. Result: "; (queue.isFull()) ? cout << "true" : cout << "false"; cout << endl;
-	cout << endl;
+int main() {
+    Queue queue;
 
-	cout << "Adding a character to the queue:" << endl;
-	cout << "  enqueue 'a'. Result: "; queue.enqueue('a'); cout << queue.back() << endl;
-	cout << "  enqueue 'b'. Result: "; queue.enqueue('b'); cout << queue.back() << endl;
-	cout << "  Counting the number of characters in the queue. Result: " << queue.getCounter() << endl;
-	cout << "  enqueue 'c'. Result: "; queue.enqueue('c'); cout << queue.back() << endl;
-	cout << "  enqueue 'd'. Result: "; queue.enqueue('d'); cout << queue.back() << endl;
-	cout << "  enqueue 'e'. Result: "; queue.enqueue('e'); cout << queue.back() << endl;
-	cout << "  enqueue 'f'. Result: "; queue.enqueue('f'); cout << queue.back() << endl;
-	cout << "  enqueue 'g'. Result: "; queue.enqueue('g'); cout << queue.back() << endl;
-	cout << "  enqueue 'h'. Result: "; queue.enqueue('h'); cout << queue.back() << endl;
-	cout << "  enqueue 'j'. Result: "; queue.enqueue('j'); cout << queue.back() << endl;
-	cout << endl;
+    cout << "Adding characters to the queue:" << endl;
+    testEnqueue<char>(queue, 'a');
+    testEnqueue<char>(queue, 'b');
+    testEnqueue<char>(queue, 'c');
+    testEnqueue<char>(queue, 'd');
+    cout << endl;
 
-	cout << "Show: " << queue.show<string>() << endl;
-	cout << endl;
+    testQueueState(queue);
 
-	cout << "Max size. Result: " << queue.getMaxSize() << endl;
-	cout << "Counting the number of characters in the queue. Result: " << queue.getCounter() << endl;
-	cout << "Clear the queue. Result (isEmpty): "; queue.clear(); (queue.isEmpty()) ? cout << "true" : cout << "false"; cout << endl;
-	cout << "Max size. Result: " << queue.getMaxSize() << endl;
-	cout << "Counting the number of characters in the queue. Result: " << queue.getCounter() << endl;
-	cout << endl;
+    cout << "Deleting characters from the queue + getting without deleting the back character in the queue:" << endl;
+    testDequeue(queue);
+    testDequeue(queue);
+    testDequeue(queue);
+    cout << endl;
 
-	cout << "Show: " << queue.show<string>() << endl;
-	cout << endl;
+    testQueueState(queue);
 
-	char ch = _getch();
-	return 0;
+    cout << "Adding more characters to the queue:" << endl;
+    testEnqueue<char>(queue, 'a');
+    testEnqueue<char>(queue, 'b');
+    cout << "  Counting the number of characters in the queue. Result: " << queue.getCounter() << endl;
+    testEnqueue(queue, 'c');
+    testEnqueue<char>(queue, 'd');
+    testEnqueue<char>(queue, 'e');
+    testEnqueue<char>(queue, 'f');
+    testEnqueue<char>(queue, 'g');
+    testEnqueue<char>(queue, 'h');
+    testEnqueue<char>(queue, 'j');
+    cout << endl;
+
+    cout << "Max size. Result: " << queue.getMaxSize() << endl;
+    cout << "Counting the number of characters in the queue. Result: " << queue.getCounter() << endl;
+    testClearQueue(queue);
+    cout << "Max size. Result: " << queue.getMaxSize() << endl;
+    cout << "Counting the number of characters in the queue. Result: " << queue.getCounter() << endl;
+    cout << endl;
+
+    return 0;
 }

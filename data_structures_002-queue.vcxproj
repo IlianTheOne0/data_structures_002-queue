@@ -127,10 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Entities\Item\item.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Entities\Queue\queue.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="queue.h" />
+    <ClInclude Include="Entities\Item\IItem.h" />
+    <ClInclude Include="Entities\Item\item.h" />
+    <ClInclude Include="lib.h" />
+    <ClInclude Include="Entities\Queue\queue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
