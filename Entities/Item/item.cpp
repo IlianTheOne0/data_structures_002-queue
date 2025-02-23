@@ -21,4 +21,4 @@ template class Item<double>;
 template class Item<float>;
 template class Item<bool>;
 template class Item<char>;
-template class Item<std::string>;
+template class Item<string>;
