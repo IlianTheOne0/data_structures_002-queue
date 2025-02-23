@@ -1,23 +1,26 @@
 #include "lib.h"
 #include "Entities/Queue/queue.h"
 
-ostream& operator<<(ostream& os, IItem& item) {
+ostream& operator<<(ostream& os, IItem& item)
+{
     char* value = static_cast<char*>(item.getValue());
-    
+
     if (value) { os << *value; }
     else { os << "null"; }
-    
+
     return os;
 }
 
 template<typename TValue>
-void testEnqueue(Queue& queue, TValue value) {
+void testEnqueue(Queue& queue, TValue value)
+{
     cout << "  enqueue '" << value << "'. Result: ";
     queue.enqueue(new Item<TValue>(value));
     cout << *static_cast<Item<TValue>*>(queue.back()) << endl;
 }
 
-void testDequeue(Queue& queue) {
+void testDequeue(Queue& queue)
+{
     cout << "  dequeue + back. Result: ";
     queue.dequeue();
 
@@ -26,7 +29,8 @@ void testDequeue(Queue& queue) {
     else { cout << "Queue is empty!" << endl; }
 }
 
-void testQueueState(Queue& queue) {
+void testQueueState(Queue& queue)
+{
     cout << "Checks: " << endl;
     cout << "  Max size. Result: " << queue.getMaxSize() << endl;
     cout << "  Counting the number of characters in the queue. Result: " << queue.getCounter() << endl;
@@ -35,13 +39,15 @@ void testQueueState(Queue& queue) {
     cout << endl;
 }
 
-void testClearQueue(Queue& queue) {
+void testClearQueue(Queue& queue)
+{
     cout << "Clear the queue. Result (isEmpty): ";
     queue.clear();
     cout << (queue.isEmpty() ? "true" : "false") << endl;
 }
 
-int main() {
+void testQueue()
+{
     Queue queue;
 
     cout << "Adding characters to the queue:" << endl;
@@ -80,6 +86,11 @@ int main() {
     cout << "Max size. Result: " << queue.getMaxSize() << endl;
     cout << "Counting the number of characters in the queue. Result: " << queue.getCounter() << endl;
     cout << endl;
+}
+
+int main()
+{
+    testQueue();
 
     return 0;
 }
