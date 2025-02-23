@@ -137,6 +137,7 @@
     <ClInclude Include="Entities\Item\IItem.h" />
     <ClInclude Include="Entities\Item\item.h" />
     <ClInclude Include="Entities\PriorityQueue\enum.h" />
+    <ClInclude Include="Entities\PriorityQueue\IPriorityItem.h" />
     <ClInclude Include="Entities\PriorityQueue\priorityItem.h" />
     <ClInclude Include="Entities\PriorityQueue\priorityQueue.h" />
     <ClInclude Include="lib.h" />

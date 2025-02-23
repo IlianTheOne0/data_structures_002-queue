@@ -2,22 +2,19 @@
 #define PRIORITY_ITEM_H
 
 #include "../Item/item.h"
-#include "enum.h"
+#include "IPriorityItem.h"
 
 template<typename TValue>
 class PriorityItem
-	: public IItem
+    : public Item<TValue>, public IPriorityItem
 {
 private:
-	Priority _priority;
+    Priority _priority;
 public:
-	PriorityItem();
-	PriorityItem(TValue value);
-	PriorityItem(TValue value, Priority priority);
-	~PriorityItem() override = default;
+    PriorityItem(const TValue& value, Priority priority = Normal);
+    ~PriorityItem() override = default;
 
-	virtual Priority getPriority() const;
-	virtual void setPriority(const Priority& value);
+    Priority getPriority() const override;
+    void setPriority(const Priority& priority) override;
 };
-
 #endif

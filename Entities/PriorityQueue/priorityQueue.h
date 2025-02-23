@@ -5,17 +5,16 @@
 #include "priorityItem.h"
 
 class PriorityQueue
-    : public Queue
-{
+    : public Queue {
 private:
     void sort();
 public:
     PriorityQueue();
+    ~PriorityQueue() override = default;
 
     void enqueue(IItem* value) override;
-    IItem* dequeue() override;
-    IItem* front() override;
-    IItem* back() override;
+    virtual IItem* dequeueWithHighestPriority();
+    virtual IItem* peek();
 };
 
 #endif
