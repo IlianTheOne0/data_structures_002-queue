@@ -17,7 +17,7 @@ Queue::Queue()
 	: _maxSize(DEFAULT_STACK_SIZE), _counter(0)
 { _queue = new IItem * [_maxSize]; }
 Queue::~Queue()
-{ for (size_t i = 0; i < _counter; i++) { delete _queue[i]; } delete [] _queue; }
+{ for (size_t i = 0; i < _counter; i++) { delete _queue[i]; } delete [] _queue; cout << "\t\tQueue destructor" << endl; }
 
 bool Queue::isFull() const { return _counter == _maxSize; }
 bool Queue::isEmpty() const { return _counter == 0; }

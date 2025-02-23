@@ -8,7 +8,7 @@
 
 class Queue
 {
-private:
+protected:
 	IItem** _queue;
 	size_t _maxSize{};
 	size_t _counter{};
